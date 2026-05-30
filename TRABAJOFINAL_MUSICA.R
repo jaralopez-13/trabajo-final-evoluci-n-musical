@@ -42,28 +42,24 @@ hist(dataset_final$energy,
      border = "white")
 
 
-# ------------------------------------------------------------------------------
-# FASE 2: COMPARACIÓN (Boxplots / Gráficos de cajas)
-# ------------------------------------------------------------------------------
-# Pasamos la duración de milisegundos a minutos para que se entienda en la exposición
+# COMPARACIÓN (Boxplots / Gráficos de cajas)
+# Pasamos la duración de milisegundos a minutos 
 dataset_final$duration_min <- (dataset_final$duration_ms / 1000) / 60
 
-# Boxplot 1: Comparación de Duración por Época (¿Es más corta ahora?)
+# Boxplot 1: Comparación de Duración por Época 
 boxplot(duration_min ~ epoca, data = dataset_final,
         main = "Comparación de la Duración por Época",
         ylab = "Duración en minutos", 
         col = c("#1DB954", "#191414"))
 
-# Boxplot 2: Comparación de Energía por Época (¿Es más enérgica ahora?)
+# Boxplot 2: Comparación de Energía por Época 
 boxplot(energy ~ epoca, data = dataset_final,
         main = "Comparación del Nivel de Energía por Época",
         ylab = "Nivel de Energía (0 a 1)", 
         col = c("#1DB954", "#4A90E2"))
 
 
-# ------------------------------------------------------------------------------
-# FASE 3: PREDICCIONES (Correlación y Regresión Lineal)
-# ------------------------------------------------------------------------------
+# PREDICCIONES (Correlación y Regresión Lineal)
 # Matriz de correlación para ver cómo se relacionan las variables entre sí
 variables_numericas <- dataset_final[, c("tempo", "energy", "valence", "popularity")]
 print("--- MATRIZ DE CORRELACIÓN ---")
@@ -83,7 +79,7 @@ plot(canciones_actuales$energy, canciones_actuales$popularity,
      pch = 19,        
      col = "#1DB954") 
 
-# Añadimos una línea roja de tendencia para ver la dirección de los puntos
+# línea roja de tendencia para ver la dirección de los puntos
 abline(lm(popularity ~ energy, data = canciones_actuales), col = "red", lwd = 2)
 View(dataset_final)
 
